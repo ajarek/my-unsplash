@@ -31,7 +31,6 @@ function displayPhotos() {
     }
     displayDeleteBtn()
 }
-displayPhotos()
 
 function renderForm() {
     const panel = new PanelData() 
@@ -40,7 +39,6 @@ function renderForm() {
     cancelForm()
     submitForm()
 }
-btn.addEventListener('click',renderForm)
 
 function addPhoto(e) {
     e.preventDefault()
@@ -121,5 +119,11 @@ function search() {
         })
     })
 }
-search()
 
+
+function init() {
+    displayPhotos()
+    search()
+    btn.addEventListener('click',renderForm)
+}
+init()
