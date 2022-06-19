@@ -8,6 +8,10 @@ body {
     grid-template-rows: repeat(3, 200px);
     grid-gap: 1rem;
   }
+  main >.card{
+    position: relative;
+  }
+  
   main> .card:nth-child(1){
     grid-row: 1 / 2;
   }
@@ -36,5 +40,37 @@ body {
     object-fit: cover;
     border-radius: 10px;
   }
+  .panel{
+    width: 30rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+  .btn-warning{
+   position: absolute;
+    right: 0;
+    z-index: -1;
+  }
+  .toggle{
+ z-index: 1;
+  }
+  .label{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    background-color: greenyellow;
+    padding:0.1rem 0.5rem;
+    border-radius: 3px;
+   z-index: -2;
+  }
+  .toggle2{
+    z-index: 5;
+  }
+  
 
   
