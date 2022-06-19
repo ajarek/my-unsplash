@@ -32,7 +32,8 @@ function displayPhotos() {
     displayDeleteBtn()
 }
 
-function renderForm() {
+function renderForm(e) {
+    e.preventDefault()
     const panel = new PanelData() 
     document.body.appendChild(panel.createPanel())
     btn.removeEventListener('click',renderForm)
