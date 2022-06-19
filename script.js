@@ -2,15 +2,15 @@ import {PanelData} from './class/panel-data.js'
 const main =document.querySelector('main')
 const btn = document.querySelector('.btn')
 let newSrc =''
-
+let newLabel =''
 let photos = [
-    'https://cdn.pixabay.com/photo/2020/07/08/04/07/sea-5382487_1280.jpg',
-    'https://cdn.pixabay.com/photo/2013/07/18/20/26/sea-164989_1280.jpg',
-    'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg',
-    'https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_1280.jpg',
-    'https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014_1280.jpg',
-    'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821_1280.jpg',
-    'https://cdn.pixabay.com/photo/2013/11/28/10/03/river-219972_1280.jpg'
+    {src:'https://cdn.pixabay.com/photo/2020/07/08/04/07/sea-5382487_1280.jpg',label:'Sea'},
+    {src:'https://cdn.pixabay.com/photo/2013/07/18/20/26/sea-164989_1280.jpg',label:'Sea'},
+    {src:'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg',label:'Sunset'},
+    {src:'https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_1280.jpg',label:'Pink'},
+    {src:'https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014_1280.jpg',label:'Tree'},
+    {src:'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821_1280.jpg',label:'Road'},
+    {src:'https://cdn.pixabay.com/photo/2013/11/28/10/03/river-219972_1280.jpg',label:'River'}
 ]
 
 function displayPhotos() {
@@ -18,13 +18,13 @@ function displayPhotos() {
     for(let i = 0; i < photos.length; i++) {
     const card = document.createElement('div')
     card.classList.add('card')
-    card.innerHTML = `<img src=${photos[i]} alt="">`
+    card.innerHTML = `<img src=${photos[i].src} alt="">`
     const deleteBtn = document.createElement('button')
     deleteBtn.classList.add('btn','btn-warning')
     deleteBtn.innerHTML = 'Delete'
     const label= document.createElement('p')
     label.classList.add('label')
-    label.innerHTML = 'Label'
+    label.innerHTML = ` ${photos[i].label}`
     card.append(deleteBtn,label)
     main.appendChild(card)
     
@@ -44,12 +44,13 @@ btn.addEventListener('click',renderForm)
 
 function addPhoto(e) {
     e.preventDefault()
+    const newPhoto = {src:newSrc,label:newLabel}
     if(photos.length>=7) {
     photos.pop()
-    photos.unshift(newSrc)
+    photos.unshift(newPhoto)
     }
     else {
-    photos.unshift(newSrc)
+    photos.unshift(newPhoto)
     }
     displayPhotos()
 }
@@ -73,6 +74,7 @@ function submitForm() {
         const label = document.querySelector('#label').value
         const url = document.querySelector('#url').value
         newSrc = url||'https://cdn.pixabay.com/photo/2022/03/07/14/06/bird-7053753_1280.jpg'
+        newLabel = label||'Bird'
       addPhoto(e)
 
         form.parentElement.remove()
@@ -100,3 +102,24 @@ function displayDeleteBtn(){
         })
     })
 }
+
+function search() {
+    const search = document.querySelector('[type=search]')
+    
+    search.addEventListener('keyup',function(e) {
+        const searchValue = e.target.value.toLowerCase()
+        const allPhotos = document.querySelectorAll('.card')
+        const allLabels = document.querySelectorAll('.label')
+        allPhotos.forEach(function(photo,index) {
+            const label = allLabels[index].innerHTML.toLowerCase()
+            if(label.includes(searchValue)) {
+                photo.style.display = 'grid'
+            }
+            else {
+                photo.style.display = 'none'
+            }
+        })
+    })
+}
+search()
+

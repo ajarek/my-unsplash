@@ -10,6 +10,7 @@ body {
   }
   main >.card{
     position: relative;
+    cursor: pointer;
   }
   
   main> .card:nth-child(1){
