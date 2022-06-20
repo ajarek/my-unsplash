@@ -73,5 +73,34 @@ body {
     z-index: 5;
   }
   
+@media screen and (max-width: 600px) {
+  main{
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(7,1fr);
+  }
+  main> .card:nth-child(1){
+    grid-row:auto;
+  }
+  main> .card:nth-child(2){
+    grid-row:auto;
+  }
+  main> .card:nth-child(3){
+    grid-row:auto;
+  }
+  main> .card:nth-child(4){
+    grid-row:auto;
 
-  
+  }
+  main> .card:nth-child(5){
+    grid-row:auto
+  }
+  main> .card:nth-child(6){
+    grid-row:auto;
+  }
+  main> .card:nth-child(7){
+    grid-row:auto;
+  }
+  .panel{
+    width: 100%;
+}
+}
